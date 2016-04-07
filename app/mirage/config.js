@@ -36,6 +36,14 @@ this.get('/rentals', function(){
     }
   }]
 };
+if(request.queryParams.city !== undefined) {
+  let filteredRentals = rentals.filter(function(i) {
+    return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
+  });
+  return { data: filteredRentals };
+} else {
+  return { data: rentals };
+}
 });
   // These comments are here to help you get started. Feel free to delete them.
 
